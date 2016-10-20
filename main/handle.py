@@ -37,21 +37,20 @@ class Handle(object):
             webData = web.data()
             print "Handle Post webdata is ",webData
             recMsg = receive.parse_xml(webData)
-            if isinstance(recMsg, receive.Msg):
+            if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
-                if recMsg.MsgType == 'text':
-                    content = "test"
-                    replyMsg = reply.TextMsg(toUser,fromUser,content)
-                    print replyMsg
-                    return replyMsg.send()
-                if recMsg.MsgType == 'image':
-                    mediaId = recMsg.MediaId
-                    replyMsg = reply.ImageMsg(toUser,fromUser,mediaId)
-                    print replyMsg
-                    return replyMsg.send()
-                else:
-                    return reply.Msg().send()
+                content = "test"
+                replyMsg = reply.TextMsg(toUser,fromUser,content)
+                print replyMsg.send()
+                return replyMsg.send()
+            #    if recMsg.MsgType == 'image':
+             #       mediaId = recMsg.MediaId
+              #      replyMsg = reply.ImageMsg(toUser,fromUser,mediaId)
+               #     print replyMsg
+                #    return replyMsg.send()
+#            	else:
+ #                   return reply.Msg().send()
             else:
                 print "do not handle in this moment"
                 return reply.Msg().send()
