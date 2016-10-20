@@ -20,18 +20,9 @@ class TextMsg(Msg):
         self.__dict['Content'] = content
         
     def send(self):
-        XmlForm = """
-        <xml>
-        <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
-        <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
-        <CreateTime>{CreateTime}</CreateTime>
-        <MsgType><![CDATA[{text}]]></MsgType>
-        <Content><![CDATA[{Content}]]></Content>
-        </xml>
-        """
-        
-        return XmlForm.format(**self.__dict)
-    
+        Xml = '<xml><ToUserName><![CDATA['+self.__dict['ToUserName']+']]></ToUserName><FromUserName><![CDATA['+self.__dict['FromUserName']+']]></FromUserName><CreateTime>'+str(self.__dict['CreateTime'])+'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['+self.__dict['Content']+']]></Content></xml>'
+	return Xml
+
 class ImageMsg(Msg):
     def __init__(self,toUserName,fromUserName,mediaID):
         self.__dict = dict()

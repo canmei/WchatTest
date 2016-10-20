@@ -42,6 +42,7 @@ class Handle(object):
                 fromUser = recMsg.ToUserName
                 content = "test"
                 replyMsg = reply.TextMsg(toUser,fromUser,content)
+		print replyMsg.send()
                 return replyMsg.send()
 #                 if recMsg.MsgType == 'image':
 #                     mediaId = recMsg.MediaId
@@ -53,4 +54,5 @@ class Handle(object):
                 print "do not handle in this moment"
                 return reply.Msg().send()
         except Exception,Argment:
+	    print 'Exception'
             return Argment
